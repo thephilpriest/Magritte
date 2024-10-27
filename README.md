@@ -4,4 +4,6 @@
 
 This project simulates arbitrary objects flowing through a pipe
 
-How do i add a picture to an MD file?
+It's written in Python
+
+It's a passion project
