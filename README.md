@@ -1,6 +1,5 @@
 # Magritte
 
-
 ![Ceci n'est pas une pipe](MagrittePipe.jpg?raw=t)
 
 This project simulates arbitrary objects flowing through a pipe. 
