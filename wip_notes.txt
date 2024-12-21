@@ -1,0 +1,18 @@
+1. it is only possible for a smidgeon to see that things in front of it have any intentions, it is only possible to see their state (velocity and ins_acc)
+
+2. The smidgeons are not aware of their location. 
+
+3. The pipe knows the location of each smidgeon
+
+4. When it’s time to set an intention a smidgeon is given a small set of data to determine what to do
+
+5. There are 2 passes for each time slice
+	1. Determine the action for each smidgeon
+	2. Take the action for each smidgeon
+
+6. What units will we be using here
+	standard
+	metric
+	other
+
+7. Should we assert tailgating in terms of time or distance/velocity
