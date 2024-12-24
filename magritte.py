@@ -1,5 +1,15 @@
 #!/usr/bin/python3
 
+'''
+Copyright 2024 Philip S. Priest
+
+This file is part of Magritte.
+
+Magritte is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+Magritte is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with Magritte. If not, see <https://www.gnu.org/licenses/>.
+'''
+
 import uuid
 import numpy
 
@@ -41,12 +51,12 @@ class smidgeon:
 #class pipe:
 
 #Essentially, i think that we want to take multiple passes per time slice.
-#the first passs each smidgeon evaluates the situation ahead of it and asserts its intentions
+#the first pass each smidgeon evaluates the situation ahead of it and asserts its intentions
 #the second pass all the smidgeons execute their intentions
 
 #when we inject new items into the pipe are they all identical?
 #are there ranges for each parameter?
-#are there standard devaitions for each parameter?
+#are there standard deviations for each parameter?
 #Do we begin with an empty pipe?
 #what controls the autonomous-ness of the smidgeons
-#i think nthat would be 0 eraticness and them all being identical
+#i think that would be 0 erraticness and them all being identical
