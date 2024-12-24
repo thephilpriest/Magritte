@@ -1,4 +1,12 @@
-1. it is only possible for a smidgeon to see that things in front of it have any intentions, it is only possible to see their state (velocity and ins_acc)
+Copyright 2024 Philip S. Priest
+
+This file is part of Magritte.
+
+Magritte is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+Magritte is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with Magritte. If not, see <https://www.gnu.org/licenses/>.
+
+1. it is not possible for a smidgeon to see that things in front of it have any intentions, it is only possible to see their state (velocity and ins_acc)
 
 2. The smidgeons are not aware of their location. 
 
@@ -10,7 +18,7 @@
 	1. Determine the action for each smidgeon
 	2. Take the action for each smidgeon
 
-6. What units will we be using here
+6. What units will we be using here?
 	standard
 	metric
 	other
