@@ -1,4 +1,4 @@
-Copyright 2024 Philip S. Priest
+Copyright 2024, 2025 Philip S. Priest
 
 This file is part of Magritte.
 
@@ -12,15 +12,15 @@ You should have received a copy of the GNU General Public License along with Mag
 
 3. The pipe knows the location of each smidgeon
 
-4. When it’s time to set an intention a smidgeon is given a small set of data to determine what to do
-
-5. There are 2 passes for each time slice
+4. There are 2 passes for each time slice
 	1. Determine the action for each smidgeon
 	2. Take the action for each smidgeon
 
-6. What units will we be using here?
+5. What units will we be using here?
 	standard
 	metric
 	other
 
-7. Should we assert tailgating in terms of time or distance/velocity
+6. Should we assert tailgating in terms of time or distance/velocity
+
+7. each cycle needs to be a function of how much time the user says each cycle covers and the speed limit
