@@ -1,5 +1,5 @@
 <!---
-Copyright 2024 Philip S. Priest
+Copyright 2024, 2025 Philip S. Priest
 
 This file is part of Magritte.
 

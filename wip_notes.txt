@@ -24,3 +24,35 @@ You should have received a copy of the GNU General Public License along with Mag
 6. Should we assert tailgating in terms of time or distance/velocity
 
 7. each cycle needs to be a function of how much time the user says each cycle covers and the speed limit
+
+#Essentially, i think that we want to take multiple passes per time slice.
+#the first pass each smidgeon evaluates the situation ahead of it and asserts its intentions
+#the second pass all the smidgeons execute their intentions
+
+#when we inject new items into the pipe are they all identical?
+#are there ranges for each parameter?
+#are there standard deviations for each parameter?
+#Do we begin with an empty pipe?
+#what controls the autonomous-ness of the smidgeons
+
+
+#f len(self.current_layout) > 0:
+            #Figure out how far back to put the next smidgeon
+            #if we are at max tailgatiness then there will be 0 gap
+            #This needs to be based upon what metric we use for tailgating 
+            #Perhaps this code should reject this if the tailgatiness is violated
+
+How if at all to normalize time and distance?
+        it seems like velocity should be measured in the same base unit as distance to avoid cofusing conversion math
+        Should the wake interval have variance?
+        Should there even be a wake interval?
+        like what about the idea that different drivers will have different reacxtion times?
+
+I think that time should be in miliseconds and that every smidgeon should have a counter for
+"next time to set intention" and that every time there's a wake-up each smidgeon should decrement that counter
+by the  number of ms that passed and then set an intention accordingly and if there is already an intention then
+action it and set the counter again.
+
+I am also going to need some controls on how often new smidgeons are added to the pipe
+
+What if the average smidgeon is longer than the distance that can be covered in 1 wake_interval (IE, wake_interval * max_allowed_velocity)?
