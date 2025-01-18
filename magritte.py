@@ -52,8 +52,8 @@ if __name__ == '__main__':
         'mean_speederiness' : 50,
         'std_dev_speederiness' : 25,
         'mean_patience' : 50,
-        'std_dev_patience' : 25,
-        'mean_erraticness' : 50,
+        'std_dev_patience' : 15,
+        'mean_erraticness' : 15,
         'std_dev_erraticness' : 25,
         'intl_velocity' : 50,
         'intl_inst_acceleration' : 5,
@@ -89,8 +89,10 @@ if __name__ == '__main__':
             actively_appending = True
         # If entrant_smidgeon is clear to begin appending (the distance from the tail of plumbum.current_layout to the last smidgeon is "okay"), then
         # we can set actively_appending to True
-        if actively_appending == False and (len(plumbum.current_layout)-1) - plumbum.get_end_of_last_smidgeon() >= ideal_following_distance - entrant_smidgeon.tailgatiness: # PSP
+        if actively_appending == False and (len(plumbum.current_layout)-1) - plumbum.get_end_of_last_smidgeon() >= (
+            entrant_smidgeon.get_inst_min_okay_follow_distance(ideal_following_distance)):
             actively_appending = True
+            print(f"Flipped actively_appending to {actively_appending} at {current_time}") #PSP
         # Are we actively appending during this *virtual* millisecond
         if actively_appending == True:
             qty_to_append = min ((entrant_smidgeon.length-qty_appended), wake_interval)
@@ -98,13 +100,17 @@ if __name__ == '__main__':
             qty_appended += qty_to_append
             if qty_appended == entrant_smidgeon.length:
                 actively_appending = False
+                print(f"Flipped actively_appending to {actively_appending} at {current_time}") #PSP
                 entrant_smidgeon = None
         # append up to wake_interval vacant space into plumbum.current_layout, depending on how many units we added with add_a_smidgeon
         if (wake_interval - qty_to_append) > 0:
             plumbum.add_vacant_space((wake_interval - qty_to_append))
 
-
         # go through all the smidgeons and do their reactive()
+            for smidgeon_id in plumbum.all_the_smidgeons.keys():
+                if plumbum.all_the_smidgeons[smidgeon_id].reactive(wake_interval) is True:
+                    print(f"smidgeon {smidgeon_id} is reactive") #PSP
+
             # any smidgeon that is reactive will do a set_intention()
         # if the time is right inject and dick move in the form of a really nasty intention
             # make it persist somehow...
