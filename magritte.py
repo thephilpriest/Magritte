@@ -23,25 +23,23 @@ if __name__ == '__main__':
     # All of this will eventually come from the user, 
     # That which makes a pipe
     pipe_params = {
-        'max_allowed_velocity' : 3 # Presuming that all distances are measured in CM, this equates to 108KPH
+        'max_allowed_velocity' : 28 # Presuming that all distances are measured in MM, this equates to 100KPH
     }
     # This is the number of *virtual* milliseconds between each wake-up
     wake_interval = 50
     # This is the number of *virtual* milliseconds the simulation will run for
     run_time = 3600000 # That's 1 hour
-    # PSP run_time = 1000 # PSP
-    # This is the target following distance; augmented by a smidgeon's tailgatiness and erraticness values
-    # This values can be considred to be in either *virtual* milliseconds or distance units since they are by design in a 1:1 ratio
+    # This is the target following distance in MS (*NOT* MM); augmented by a smidgeon's tailgatiness and erraticness values
     ideal_following_distance = 2000
     # That which makes a smidgeon
     new_smidgeon_params = {
-        'mean_length' : 100,
-        'std_dev_length' : 10,
-        'mean_max_velocity' : 80,
-        'std_dev_max_velocity' : 7,
-        'mean_max_acceleration' : 10,
+        'mean_length' : 4575,
+        'std_dev_length' : 750,
+        'mean_max_velocity' : 55,
+        'std_dev_max_velocity' : 5,
+        'mean_max_acceleration' : 7,
         'std_dev_max_acceleration' : 1,
-        'mean_max_deceleration' : 15,
+        'mean_max_deceleration' : 15, # PSP fact check this
         'std_dev_max_deceleration' : 2,
         'mean_acceleratiness' : 50,
         'std_dev_acceleratiness' : 25,
@@ -55,8 +53,8 @@ if __name__ == '__main__':
         'std_dev_patience' : 15,
         'mean_erraticness' : 15,
         'std_dev_erraticness' : 25,
-        'intl_velocity' : 50,
-        'intl_inst_acceleration' : 5,
+        'intl_velocity' : 28, # PSP I am for now opting to inject new smidgeons at the exact speed limit
+        'intl_inst_acceleration' : 0, # PSP I am for now opting to inject new smidgeons free of acceleration or deceleration
         'mean_reaction_time' : 250,
         'std_dev_reaction_time' : 50
     }
@@ -90,12 +88,12 @@ if __name__ == '__main__':
         # If entrant_smidgeon is clear to begin appending (the distance from the tail of plumbum.current_layout to the last smidgeon is "okay"), then
         # we can set actively_appending to True
         if actively_appending == False and (len(plumbum.current_layout)-1) - plumbum.get_end_of_last_smidgeon() >= (
-            entrant_smidgeon.get_inst_min_okay_follow_distance(ideal_following_distance)):
+            entrant_smidgeon.get_inst_min_okay_follow_distance(ideal_following_distance * plumbum.velocity_limit)):
             actively_appending = True
             print(f"Flipped actively_appending to {actively_appending} at {current_time}") #PSP
         # Are we actively appending during this *virtual* millisecond
         if actively_appending == True:
-            qty_to_append = min ((entrant_smidgeon.length-qty_appended), wake_interval)
+            qty_to_append = min ((entrant_smidgeon.length-qty_appended), (wake_interval * plumbum.velocity_limit)) #This needs to take velocity into account PSP
             plumbum.add_a_smidgeon(entrant_smidgeon, qty_to_append)
             qty_appended += qty_to_append
             if qty_appended == entrant_smidgeon.length:
@@ -121,4 +119,4 @@ if __name__ == '__main__':
             # the duration of the slowdown, the rate of the speed-back-up and the speed both before and after the event
         # go through all the smidgeons and execute their intentions
             # This will be done via pipe.execute_intentions()
-        current_time += 1
+        current_time += wake_interval

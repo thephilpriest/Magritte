@@ -23,9 +23,9 @@ class pipe:
         self.all_the_smidgeons = {}
         # The prescribed "speed limit" of the pipe; the distance covered per *virtual* millisecond (IE, 1/nth of
         # the wake interval). The unit is arbitrary but not weird in that it is all base 10 and not the BS miles
-        # and feet stuff. but my use cases treat it as CM
+        # and feet stuff. but my use cases treat it as MM
         # It is important to know that this limit is not hard-and-fast, smidgeons can be speeders.
-        self.velocity_limit = dict['max_allowed_velocity']
+        self.velocity_limit = params['max_allowed_velocity']
         # The current layout of the pipe, a list where position 0 is the tip of the 1st smidgeon and each 
         # position represents some atomic unit of length where unconsumed space is None and consumed spaces 
         # are filled with smidgeon.unq_id values
