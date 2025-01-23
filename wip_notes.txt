@@ -14,13 +14,52 @@ You should have received a copy of the GNU General Public License along with Mag
 
 4. There are 2 passes for each time slice
 	1. Determine the action for each smidgeon
+                fueled by their reactive value
 	2. Take the action for each smidgeon
+8. we want to take multiple passes per time slice.
 
 5. What units will we be using here?
-	standard
 	metric
-	other
+                MM and MS
 
-6. Should we assert tailgating in terms of time or distance/velocity
+6. Tailgating is derived by asserting ideal_following_distance as a quantity of milliseconds.
 
 7. each cycle needs to be a function of how much time the user says each cycle covers and the speed limit
+
+8. time is in milliseconds and every smidgeon had a counter for
+"next time to set intention" and that every time there's a wake-up each smidgeon should decrement that counter
+by the  number of ms that passed and then set/reset an intention accordingly
+
+----Thoughts on setting of intentions----
+set_intention
+        inputs
+                my current velocity
+                the position of my tip
+                the position of the end of the next smidgeon
+                        This can be used to know the distance
+                min okay follow distance
+                tailgatiness
+                        feeding into get_inst_min_okay_follow_distance
+                patience
+                acceleratiness
+                deceleratiness
+                speederiness
+                erraticness
+                max acceleration
+                max deceleration
+                velocity_limit
+        output
+                accelerate this would be a positive integer
+                        stomping the gas on a typical car whose max acceleration is 7 would yield a value of 7
+                                But,  most people don't do that
+                decelerate this would be a negative integer
+                status quoA this would be 0
+
+9. Imagine that a smidgeon is a typical car on that the pipe is a typical 1 lane road
+        A typical car can accelerate at about 0.6 to 0.9 Gs
+        I am setting the mean_max_acceleration for the smidgeons to 7
+        I am setting the std_dev for max acceleration to 1
+        v = v₀ + at ; I think we can just use that as is.
+        Gravity is 9.8 M/S2 -> 0.00980665 Millimeters Per Millisecond Squared
+
+         https://www.justintools.com/unit-conversion/acceleration.php?k1=standard-gravity&k2=meters-per-millisecond-squared#google_vignette
